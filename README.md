@@ -58,7 +58,7 @@ Medicine questions first check the patient's report chunks and medication record
 
 ## Structured terminal progress
 
-All application progress is emitted as one JSON object per line through `print`; no logging library is used. Before each chat graph runs, the terminal prints its compiled ASCII diagram and emits the Mermaid representation as a `graph.execution_plan` JSON event. Events have UTC timestamps, stable event names, and step numbers, for example `upload.received` (1), `extraction.complete` (2), `chunking.complete` (3), `embedding.complete` (4), and `upload.complete` (5). Passwords, tokens, report contents, and question text are not written to progress events.
+All application progress is emitted as one JSON object per line through `print`. Before each chat graph runs, the terminal prints its compiled ASCII diagram and emits the Mermaid representation as a `graph.execution_plan` JSON event. Events have UTC timestamps, stable event names, and step numbers, for example `upload.received` (1), `extraction.complete` (2), `chunking.complete` (3), `embedding.complete` (4), and `upload.complete` (5). Passwords, tokens, report contents, and question text are not written to progress events.
 
 ## Deployment boundary
 
