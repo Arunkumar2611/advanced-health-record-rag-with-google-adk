@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Health Records</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, sans-serif; color: #18232b; background: #f4f7f8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { padding: 24px max(24px, calc((100vw - 980px) / 2)); background: #123c46; color: white; }
+    header h1 { margin: 0 0 6px; font-size: 1.35rem; }
+    header p { margin: 0; color: #d2e4e7; }
+    main { max-width: 980px; margin: 26px auto; padding: 0 18px; display: grid; gap: 18px; }
+    section { background: white; border: 1px solid #dce5e7; border-radius: 12px; padding: 20px; box-shadow: 0 3px 14px #173d4610; }
+    h2 { font-size: 1.05rem; margin: 0 0 14px; }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    input, button { font: inherit; border-radius: 8px; padding: 10px 12px; }
+    input { border: 1px solid #cbd8db; min-width: 180px; flex: 1; }
+    input[type=file] { min-width: 240px; }
+    button { background: #146979; border: 0; color: white; cursor: pointer; font-weight: 600; }
+    button.secondary { background: #e7f0f1; color: #174651; }
+    button:disabled { opacity: .6; cursor: wait; }
+    #status { min-height: 1.4em; color: #38565f; }
+    #messages { display: grid; gap: 12px; margin: 16px 0; }
+    .bubble { border-radius: 10px; padding: 12px 14px; white-space: pre-wrap; line-height: 1.5; }
+    .user { background: #eaf3f4; margin-left: 10%; }
+    .assistant { background: #f5f6ef; margin-right: 6%; }
+    .sources { color: #557078; font-size: .83rem; margin-top: 9px; }
+    #files { margin: 10px 0 0; padding-left: 20px; }
+    #files li { margin: 5px 0; }
+    .hidden { display: none; }
+    .hint { color: #60747b; font-size: .88rem; }
+    @media (max-width: 600px) { main { margin: 14px auto; } section { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <header><h1>Personal Health Records</h1><p>Your reports, organized for grounded questions.</p></header>
+  <main>
+    <section id="auth-panel">
+      <h2>Sign in or create your account</h2>
+      <div class="row"><input id="name" autocomplete="name" placeholder="Full name (for registration)"><input id="email" type="email" autocomplete="username" placeholder="Email"><input id="password" type="password" autocomplete="current-password" placeholder="Password (12+ characters)"></div>
+      <div class="row" style="margin-top:10px"><button id="register">Create account</button><button class="secondary" id="login">Sign in</button></div>
+      <p class="hint">Your account is identified securely by the server. Account IDs are never entered here.</p>
+    </section>
+    <section id="workspace" class="hidden">
+      <div class="row" style="justify-content:space-between"><h2 id="welcome">Health workspace</h2><button class="secondary" id="logout">Sign out</button></div>
+      <h2>Upload a report</h2>
+      <div class="row"><input id="file" type="file" accept=".pdf,.docx,.txt,.md,.png,.jpg,.jpeg,.webp"><button id="upload">Upload and analyze</button></div>
+      <ul id="files"></ul>
+      <p class="hint">Upload appointment cards, prescriptions, blood tests, or other reports. Check extracted details against the original.</p>
+    </section>
+    <section id="chat-panel" class="hidden">
+      <h2>Ask about your records</h2>
+      <div id="messages" aria-live="polite"></div>
+      <div class="row"><input id="question" placeholder="Ask about a documented diagnosis, medicine, or lab result"><button id="send">Send</button></div>
+      <p class="hint">This assistant explains records and general medicine references. It does not diagnose or recommend treatment.</p>
+    </section>
+    <p id="status" role="status"></p>
+  </main>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

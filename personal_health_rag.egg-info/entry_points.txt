@@ -1,0 +1,2 @@
+[console_scripts]
+health-rag = health_rag.server:main
